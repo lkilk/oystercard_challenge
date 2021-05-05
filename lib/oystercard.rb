@@ -9,7 +9,7 @@ class Oystercard
     @balance = 0
     @max_limit = MAX_LIMIT
     @entry_station 
-    @journeys = []
+    @journeys = {}
   end
 
   def top_up(money)
@@ -18,15 +18,16 @@ class Oystercard
     @balance += money
   end
 
-  def touch_in(station)
+  def touch_in(entry_station)
     fail "balance too low" if balance < MIN_LIMIT
-    @entry_station = station
-    @journeys << station
+    @entry_station = entry_station
+    @journeys.merge!(entry_station: entry_station)
   end
 
-  def touch_out
+  def touch_out(exit_station)
     deduct(MIN_LIMIT)
     @entry_station = nil
+    @journeys.merge!(exit_station: exit_station)
   end
 
   def in_journey?
