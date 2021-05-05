@@ -32,12 +32,6 @@ it "raises error if balance is over max limit" do
   expect{ subject.top_up(1) }.to raise_error "Max limit is £#{Oystercard::MAX_LIMIT}"
 end
 
-it "deducts money from the card" do
-  subject.top_up(10)
-  subject.deduct(3)
-  expect(subject.balance).to eq (7)
-end
-
 it "returns in journey when touched in" do
   allow(subject).to receive (:balance) {Oystercard::MIN_LIMIT}
   subject.touch_in
@@ -51,6 +45,11 @@ end
 
 it "retuns an error if balance is less than min limit" do
   expect{ subject.touch_in }.to raise_error "balance too low"
+end
+
+it "deducts minimum balance when touched out" do
+  subject.top_up(10)
+  expect{ subject.touch_out }.to change{ subject.balance }.by(-Oystercard::MIN_LIMIT)
 end
 
 end
