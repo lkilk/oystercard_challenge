@@ -7,7 +7,6 @@ class Oystercard
   def initialize
     @balance = 0
     @max_limit = MAX_LIMIT
-    @entry_station 
     @journeys = {}
   end
 
