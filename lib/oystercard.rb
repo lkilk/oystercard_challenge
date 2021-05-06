@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Oystercard generator class
 class Oystercard
   attr_reader :balance, :entry_station, :journeys
 
@@ -17,7 +20,7 @@ class Oystercard
   end
 
   def touch_in(entry_station)
-    fail 'balance too low' if balance < MIN_LIMIT
+    raise 'balance too low' if balance < MIN_LIMIT
 
     @entry_station = entry_station
     @journeys.merge!(entry_station: entry_station)
@@ -39,4 +42,17 @@ class Oystercard
   def deduct(money)
     @balance -= money
   end
+end
+
+class Station
+  attr_reader :name
+  attr_reader :zone
+
+  def initialize(name,zone)
+    @name = name
+    @zone = zone
+  end
+
+  
+
 end
