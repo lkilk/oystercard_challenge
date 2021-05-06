@@ -48,6 +48,11 @@ it "has an empty list of journeys by default" do
 end
 
 # I want to see to all my previous trips
+# We're using let here to lazy load a method, and then assigning it the key value pairs of 
+# calling the methods of touch in, touch out, to their respectable keys, that we've done in the 
+# main ruby code itself. This is good to ensure we can test to see if the method of journeys, matches
+# up to those values by comparing it to the lazy loaded :journey method.
+# for more info on let https://medium.com/@tomkadwill/all-about-rspec-let-a3b642e08d39
 let(:journey){ {entry_station: entry_station, exit_station: exit_station} }
 it "allows us to view previous journeys" do
   subject.top_up(10)
