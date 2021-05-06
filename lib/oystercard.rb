@@ -1,7 +1,6 @@
 class Oystercard
-  attr_reader :balance
-  attr_reader :entry_station
-  attr_reader :journeys
+  attr_reader :balance, :entry_station, :journeys
+  
   MAX_LIMIT = 90
   MIN_LIMIT = 1
 
@@ -34,10 +33,11 @@ class Oystercard
    !!@entry_station
    # @entry_station == nil ? false : true
   end
+
 # Why do we still have this here if its an attr_reader?
-  def journeys
-    @journeys
-  end
+  # def journeys
+    # @journeys
+  # end
   
   private
 
