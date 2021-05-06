@@ -34,7 +34,7 @@ class Oystercard
    !!@entry_station
    # @entry_station == nil ? false : true
   end
-
+# Why do we still have this here if its an attr_reader?
   def journeys
     @journeys
   end
