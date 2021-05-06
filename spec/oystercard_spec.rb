@@ -62,6 +62,3 @@ it "allows us to view previous journeys" do
 end
 
 end
-
-
-

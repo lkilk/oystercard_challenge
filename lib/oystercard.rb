@@ -43,5 +43,3 @@ class Oystercard
     @balance -= money
   end
 end
-
-
