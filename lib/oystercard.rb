@@ -1,6 +1,6 @@
 class Oystercard
   attr_reader :balance, :entry_station, :journeys
-  
+
   MAX_LIMIT = 90
   MIN_LIMIT = 1
 
@@ -11,13 +11,14 @@ class Oystercard
   end
 
   def top_up(money)
-    fail "Max limit is £#{MAX_LIMIT}" if @balance + money > MAX_LIMIT
+    raise "Max limit is £#{MAX_LIMIT}" if @balance + money > MAX_LIMIT
 
     @balance += money
   end
 
   def touch_in(entry_station)
-    fail "balance too low" if balance < MIN_LIMIT
+    fail 'balance too low' if balance < MIN_LIMIT
+
     @entry_station = entry_station
     @journeys.merge!(entry_station: entry_station)
   end
@@ -29,19 +30,13 @@ class Oystercard
   end
 
   def in_journey?
-   !!@entry_station
-   # @entry_station == nil ? false : true
+    !!@entry_station
+    # @entry_station == nil ? false : true
   end
 
-# Why do we still have this here if its an attr_reader?
-  # def journeys
-    # @journeys
-  # end
-  
   private
 
   def deduct(money)
     @balance -= money
   end
-
 end
